@@ -1,0 +1,31 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'MessengerUIKitGeneral' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for MessengerUIKitGeneral
+
+pod 'XMPPFramework'
+pod 'MBProgressHUD'
+pod 'CocoaAsyncSocket'
+pod 'CocoaLumberjack'
+pod 'FMDB'
+pod 'JSQMessagesViewController'
+pod 'JSQSystemSoundPlayer'
+pod 'KissXML'
+pod 'libidn'
+
+
+  target 'MessengerUIKitGeneralTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'MessengerUIKitGeneralUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
