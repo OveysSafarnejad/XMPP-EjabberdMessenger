@@ -7,22 +7,24 @@
 //
 
 import UIKit
-import XMPPFramework
 import MBProgressHUD
-
-
+import XMPPFramework
 
 class ViewController: UIViewController , XMPPStreamDelegate {
     
     
     var hud: MBProgressHUD!
     
-    var username: String = ""
-    var password2: String = ""
-    var elements: NSMutableArray = []
+    //    var username: String = ""
+    //    var password2: String = ""
+    //    var elements: NSMutableArray = []
+    //    var newAccountRegistration : Bool = false
     
-    @IBOutlet weak var startBtn: UIButton!
+    
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,17 +46,19 @@ class ViewController: UIViewController , XMPPStreamDelegate {
     
     func setUp(){
         
-        startBtn.layer.cornerRadius = self.startBtn.frame.height/2
-        startBtn.clipsToBounds = true
+        startButton.layer.cornerRadius = self.startButton.frame.height/2
+        startButton.clipsToBounds = true
+        signUpButton.layer.cornerRadius = self.signUpButton.frame.height/2
+        signUpButton.clipsToBounds = true
         attempToConnect()
     }
     
     func attempToConnect() {
-        if UserDefaults.standard.string(forKey: kXMPP.myJID) == nil || UserDefaults.standard.string(forKey: kXMPP.myPassword) == nil {
-            print("must redirect to login")
-        } else {
-            print("attemp to connect")
+        
+        if UserDefaults.standard.string(forKey: kXMPP.myJID) != nil && UserDefaults.standard.string(forKey: kXMPP.myPassword) != nil {
+            
             OneChat.sharedInstance.connect(username: UserDefaults.standard.string(forKey: kXMPP.myJID)!, password: UserDefaults.standard.string(forKey: kXMPP.myPassword)!) { (stream, error) -> Void in
+                
                 if let _ = error {
                     print("first connectiong attemps in initializer controller returns error")
                 } else {
@@ -64,18 +68,19 @@ class ViewController: UIViewController , XMPPStreamDelegate {
         }
     }
     
+    //MARK:- Delegate Method
+    
     func xmppStreamDidConnect(_ sender: XMPPStream) {
         print("connected -> (START UP)")
-        
-        print("support: \(OneChat.sharedInstance.xmppStream!.supportsInBandRegistration)")
-        if OneChat.sharedInstance.xmppStream!.supportsInBandRegistration {
+        if UserDefaults.standard.string(forKey: kXMPP.myJID) != nil && UserDefaults.standard.string(forKey: kXMPP.myPassword) != nil {
             do {
-                try OneChat.sharedInstance.xmppStream!.register(with: elements as! [DDXMLElement])
-            } catch let error {
-                print(error)
+                try OneChat.sharedInstance.xmppStream!.authenticate(withPassword: UserDefaults.standard.string(forKey: kXMPP.myPassword)! )
+            } catch _ {
+                //Handle error
             }
         }
     }
+    
     
     func xmppStreamDidDisconnect(_ sender: XMPPStream, withError error: Error?) {
         print("disconnected -> (START UP)")
@@ -89,46 +94,6 @@ class ViewController: UIViewController , XMPPStreamDelegate {
         print("did authenticate -> (START UP)")
         let tabbarViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewTabBar")
         self.present(tabbarViewController, animated: true, completion: nil)
-    }
-    
-    func xmppStreamDidRegister(_ sender: XMPPStream) {
-        do {
-            try OneChat.sharedInstance.xmppStream!.authenticate(withPassword: password2)
-        } catch _ {
-            //Handle error
-        }
-    }
-    
-    func xmppStream(_ sender: XMPPStream, didNotRegister error: DDXMLElement) {
-    
-    }
-    
-    
-    @IBAction func signUpPressed(_ sender: Any) {
-        
-        
-        username = "jamshid"
-        password2 = "123"
-        elements.add(XMLElement(name: "username", stringValue: username))
-        elements.add(XMLElement(name: "password", stringValue: password2))
-        
-        
-        OneChat.sharedInstance.connect(username: username+Constants.LoginPostfix.USERNAME_POSTFIX, password: password2) { (stream, error) -> Void in
-            
-            if let _ = error {
-                let alertController = UIAlertController(title: "Oops", message: "Please set crendentials before trying to connect!", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) -> Void in
-                    
-                }))
-                
-            } else {
-            //FIXME: else -> move to did authenticate
-            }
-        }
-        
-        
-        
-        
     }
 }
 

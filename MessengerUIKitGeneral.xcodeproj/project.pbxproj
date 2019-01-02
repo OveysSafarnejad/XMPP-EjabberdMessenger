@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2406D21521D260E700944B4F /* RegisterAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2406D21421D260E700944B4F /* RegisterAccountViewController.swift */; };
 		24093F9F21CFB70C009BEDDB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24093F9E21CFB70C009BEDDB /* Constants.swift */; };
 		241DBBAB21CFC5B5002DAA36 /* OneLastActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DBBA321CFC5B4002DAA36 /* OneLastActivity.swift */; };
 		241DBBAC21CFC5B5002DAA36 /* OnePresence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241DBBA421CFC5B4002DAA36 /* OnePresence.swift */; };
@@ -36,6 +37,8 @@
 		2487784921BFD06800DE6CBD /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487784221BFD06800DE6CBD /* MessageCell.swift */; };
 		2487784A21BFD06800DE6CBD /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487784421BFD06800DE6CBD /* Contact.swift */; };
 		248C7CE021CEBD78003C52DE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C7CDF21CEBD78003C52DE /* SignInViewController.swift */; };
+		2496B19421D7DDA8005F4B0B /* ContactListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496B19321D7DDA8005F4B0B /* ContactListTableViewController.swift */; };
+		2496B19621D7E43F005F4B0B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496B19521D7E43F005F4B0B /* ChatViewController.swift */; };
 		24D5905021CA53B2002F9928 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D5904F21CA53B2002F9928 /* SettingViewController.swift */; };
 		6FAC09C0EB387586BE3D0FC8 /* Pods_MessengerUIKitGeneralTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E5C93EFCB7DC12AC166B95 /* Pods_MessengerUIKitGeneralTests.framework */; };
 		7FF96EA6FA989FBD4A205BCD /* Pods_MessengerUIKitGeneral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6071B2403144EFBDB67B38 /* Pods_MessengerUIKitGeneral.framework */; };
@@ -63,6 +66,7 @@
 		01F1CF21FAFD1EF6ABF97B10 /* Pods-MessengerUIKitGeneral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerUIKitGeneral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessengerUIKitGeneral/Pods-MessengerUIKitGeneral.debug.xcconfig"; sourceTree = "<group>"; };
 		219C3146D39744196245C824 /* Pods-MessengerUIKitGeneral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerUIKitGeneral.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessengerUIKitGeneral/Pods-MessengerUIKitGeneral.release.xcconfig"; sourceTree = "<group>"; };
 		21E5C93EFCB7DC12AC166B95 /* Pods_MessengerUIKitGeneralTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessengerUIKitGeneralTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2406D21421D260E700944B4F /* RegisterAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAccountViewController.swift; sourceTree = "<group>"; };
 		24093F9E21CFB70C009BEDDB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		241DBBA321CFC5B4002DAA36 /* OneLastActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLastActivity.swift; sourceTree = "<group>"; };
 		241DBBA421CFC5B4002DAA36 /* OnePresence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnePresence.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 		2487784221BFD06800DE6CBD /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		2487784421BFD06800DE6CBD /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		248C7CDF21CEBD78003C52DE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		2496B19321D7DDA8005F4B0B /* ContactListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTableViewController.swift; sourceTree = "<group>"; };
+		2496B19521D7E43F005F4B0B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		24D5904F21CA53B2002F9928 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2ACE4437B0E814B76963CE00 /* Pods-MessengerUIKitGeneralUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessengerUIKitGeneralUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessengerUIKitGeneralUITests/Pods-MessengerUIKitGeneralUITests.release.xcconfig"; sourceTree = "<group>"; };
 		630FA17A2DBB1511FDD28A2A /* Pods_MessengerUIKitGeneralUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessengerUIKitGeneralUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +233,9 @@
 				2487783B21BFCEB700DE6CBD /* MainConversationsViewController.swift */,
 				24D5904F21CA53B2002F9928 /* SettingViewController.swift */,
 				248C7CDF21CEBD78003C52DE /* SignInViewController.swift */,
+				2406D21421D260E700944B4F /* RegisterAccountViewController.swift */,
+				2496B19321D7DDA8005F4B0B /* ContactListTableViewController.swift */,
+				2496B19521D7E43F005F4B0B /* ChatViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -514,6 +523,7 @@
 				241DBBAF21CFC5B5002DAA36 /* OneRoster.swift in Sources */,
 				2487780321BFA4F500DE6CBD /* ViewController.swift in Sources */,
 				241DBBAC21CFC5B5002DAA36 /* OnePresence.swift in Sources */,
+				2406D21521D260E700944B4F /* RegisterAccountViewController.swift in Sources */,
 				2487783C21BFCEB700DE6CBD /* MainConversationsViewController.swift in Sources */,
 				2487783721BFADAB00DE6CBD /* ConfirmSignUpController.swift in Sources */,
 				24D5905021CA53B2002F9928 /* SettingViewController.swift in Sources */,
@@ -521,6 +531,7 @@
 				24093F9F21CFB70C009BEDDB /* Constants.swift in Sources */,
 				241DBBB121CFC5B5002DAA36 /* OneChats.swift in Sources */,
 				2487784921BFD06800DE6CBD /* MessageCell.swift in Sources */,
+				2496B19421D7DDA8005F4B0B /* ContactListTableViewController.swift in Sources */,
 				241DBBAB21CFC5B5002DAA36 /* OneLastActivity.swift in Sources */,
 				248C7CE021CEBD78003C52DE /* SignInViewController.swift in Sources */,
 				2487784521BFD06800DE6CBD /* ConversationCell.swift in Sources */,
@@ -532,6 +543,7 @@
 				2487783521BFADAB00DE6CBD /* SignUpViewController.swift in Sources */,
 				2487784821BFD06800DE6CBD /* SettingMenuCell.swift in Sources */,
 				241DBBAE21CFC5B5002DAA36 /* OneMessage.swift in Sources */,
+				2496B19621D7E43F005F4B0B /* ChatViewController.swift in Sources */,
 				2487780921BFA4F500DE6CBD /* MessengerUIKitGeneral.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OneRosterDelegate , XMPPS
         
         OneChat.start(true, delegate: nil) { (stream, error) -> Void in
             if let _ = error {
-                print("\nAPP DELEGATE --> There is some error")
+                
             } else {
-                print("\nAPP DELEGATE --> No Error")
+                
             }
         }
         OneChat.sharedInstance.xmppStream?.addDelegate(self, delegateQueue: DispatchQueue.main)

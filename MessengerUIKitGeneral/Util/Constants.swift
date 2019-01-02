@@ -12,7 +12,7 @@ import Foundation
 struct Constants {
     
     struct ServerInfo {
-        static let SERVER_HOST = "192.168.1.63"
+        static let SERVER_HOST = "46.100.54.218"
         static let SERVER_PORT : UInt16 = 5222
     }
     

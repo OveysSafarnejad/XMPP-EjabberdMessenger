@@ -30,31 +30,38 @@ class SignInViewController: UIViewController , XMPPStreamDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-    
-            self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            self.hud.label.text = "Signing in..."
-            
+        
+        self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.hud.label.text = "Signing in..."
+        
         OneChat.sharedInstance.connect(username: usernameTextfield.text!+Constants.LoginPostfix.USERNAME_POSTFIX, password: passwordTextfield.text!) { (stream, error) -> Void in
-                
-                if let _ = error {
-                    let alertController = UIAlertController(title: "Oops", message: "Please set crendentials before trying to connect!", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) -> Void in
-                        
-                    }))
-                    self.hud.hide(animated: true)
-                    self.present(alertController, animated: true, completion: nil)
+            
+            if let _ = error {
+                let alertController = UIAlertController(title: "Oops", message: "Please set crendentials before trying to connect!", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) -> Void in
                     
-                } else {
-                    UserDefaults.standard.set(self.usernameTextfield.text!+Constants.LoginPostfix.USERNAME_POSTFIX, forKey: kXMPP.myJID)
-                    UserDefaults.standard.set(self.passwordTextfield.text, forKey: kXMPP.myPassword)
-                    //FIXME: else -> move to did authenticate
-                }
+                }))
+                self.hud.hide(animated: true)
+                self.present(alertController, animated: true, completion: nil)
+                
+            } else {
+                UserDefaults.standard.set(self.usernameTextfield.text!+Constants.LoginPostfix.USERNAME_POSTFIX, forKey: kXMPP.myJID)
+                UserDefaults.standard.set(self.passwordTextfield.text, forKey: kXMPP.myPassword)
+                //FIXME: else -> move to did authenticate
             }
+        }
     }
+    
+    
     
     func xmppStreamDidConnect(_ sender: XMPPStream) {
         self.hud.hide(animated: true)
         print("connected -> (SIGNIN)")
+        do {
+            try OneChat.sharedInstance.xmppStream!.authenticate(withPassword: passwordTextfield.text!)
+        } catch _ {
+            //Handle error
+        }
     }
     
     func xmppStreamDidDisconnect(_ sender: XMPPStream, withError error: Error?) {

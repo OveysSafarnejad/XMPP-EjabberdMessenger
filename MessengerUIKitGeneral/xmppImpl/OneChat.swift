@@ -381,53 +381,35 @@ extension OneChat: XMPPStreamDelegate {
     public func xmppStreamDidSecure(_ sender: XMPPStream) {
         //did secure
     }
-//    
+
 //    public func xmppStreamDidConnect(_ sender: XMPPStream) {
+//        print("pod did connect\n")
 //        isXmppConnected = true
-////        
-////        let username: String = "ahmad"
-////        let password2: String = "123"
-////        let elements: NSMutableArray = []
-////        elements.add(XMLElement(name: "username", stringValue: username))
-////        elements.add(XMLElement(name: "password", stringValue: password2))
-////        
-////        
-////        
-////        if username != "" && password2 != "" && (OneChat.sharedInstance.xmppStream!.isConnected) {
-////            
-////            print("support: \(OneChat.sharedInstance.xmppStream!.supportsInBandRegistration)")
-////            if OneChat.sharedInstance.xmppStream!.supportsInBandRegistration {
-////                do {
-////                    let re = try OneChat.sharedInstance.xmppStream!.register(with: elements as! [DDXMLElement])
-////                    print("\(re)")
-////                } catch let error {
-////                    print(error)
-////                }
-////            }
-////        }
-////
-////        
+//        
 //        do {
 //            try xmppStream!.authenticate(withPassword: password!)
 //        } catch _ {
 //            //Handle error
 //        }
 //    }
-//    
-//    public func xmppStreamDidAuthenticate(_ sender: XMPPStream) {
-//        streamDidAuthenticateCompletionBlock!(sender, nil)
-//        streamDidConnectCompletionBlock!(sender, nil)
-//        OnePresence.goOnline()
-//    }
-//    
-//    public func xmppStream(_ sender: XMPPStream, didNotAuthenticate error: DDXMLElement) {
-//        streamDidAuthenticateCompletionBlock!(sender, error)
-//        streamDidConnectCompletionBlock!(sender, error)
-//    }
-//    
-//    public func xmppStreamDidDisconnect(_ sender: XMPPStream, withError error: Error?) {
-//        delegate?.oneStreamDidDisconnect(sender, withError: error! as NSError)
-//    }
+
+    public func xmppStreamDidAuthenticate(_ sender: XMPPStream) {
+        print("pod did authenticate\n")
+        streamDidAuthenticateCompletionBlock!(sender, nil)
+        streamDidConnectCompletionBlock!(sender, nil)
+        OnePresence.goOnline()
+    }
+    
+    public func xmppStream(_ sender: XMPPStream, didNotAuthenticate error: DDXMLElement) {
+        print("pod did not authenticate\n")
+        streamDidAuthenticateCompletionBlock!(sender, error)
+        streamDidConnectCompletionBlock!(sender, error)
+    }
+    
+    public func xmppStreamDidDisconnect(_ sender: XMPPStream, withError error: Error?) {
+        print("pod did disconnect\n")
+        delegate?.oneStreamDidDisconnect(sender, withError: error! as NSError)
+    }
     
     
     public func xmppStreamDidRegister(_ sender: XMPPStream) {

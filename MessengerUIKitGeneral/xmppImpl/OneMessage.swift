@@ -190,16 +190,14 @@ extension OneMessage: XMPPStreamDelegate {
         if let completion = OneMessage.sharedInstance.didSendMessageCompletionBlock {
             completion(sender, message)
         }
-        //OneMessage.sharedInstance.didSendMessageCompletionBlock!(stream: sender, message: message)
+        //OneMessage.sharedInstance.didSendMessageCompletionBlock!(sender, message)
     }
     
     public func xmppStream(_ sender: XMPPStream, didReceive message: XMPPMessage) {
         
-        print(message.from);
-        
-        let user = OneChat.sharedInstance.xmppRosterStorage.user(for: message.from, xmppStream: OneChat.sharedInstance.xmppStream, managedObjectContext: OneRoster.sharedInstance.managedObjectContext_roster())
-        
-        if OneChats.knownUserForJid(jidStr: (user?.jidStr)!) {
+        var user = OneChat.sharedInstance.xmppRosterStorage.user(for: message.from, xmppStream: OneChat.sharedInstance.xmppStream, managedObjectContext: OneRoster.sharedInstance.managedObjectContext_roster())
+    
+        if !OneChats.knownUserForJid(jidStr:(user?.jidStr)!) {
             OneChats.addUserToChatList(jidStr: (user?.jidStr)!)
         }
         
@@ -213,5 +211,7 @@ extension OneMessage: XMPPStreamDelegate {
                 OneMessage.sharedInstance.delegate?.oneStream(sender, userIsComposing: user!)
             }
         }
+        
+        
     }
 }

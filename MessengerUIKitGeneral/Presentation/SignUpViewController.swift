@@ -72,20 +72,15 @@ class SignUpViewController: UIViewController , UITextFieldDelegate, UIGestureRec
     
     func setUp() {
         
-        
         nextBtn.isEnabled = false
         countryCodeLbl.layer.cornerRadius = 5
         countryCodeLbl.clipsToBounds = true
-        
         navigationItem.rightBarButtonItem = nextBtn
-        
         phoneNumberTextField.delegate = self
         phoneNumberTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-
         let gestuere = UITapGestureRecognizer(target: self, action: #selector(viewTapped(sender:)))
         gestuere.delegate = self
         self.view.addGestureRecognizer(gestuere)
-        
         phoneNumberTextField.keyboardType = .asciiCapableNumberPad
     }
     

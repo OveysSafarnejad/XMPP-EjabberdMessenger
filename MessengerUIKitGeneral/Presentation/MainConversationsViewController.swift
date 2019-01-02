@@ -8,13 +8,13 @@
 
 import UIKit
 import XMPPFramework
+import JSQMessagesViewController
 
-
-class MainConversationsViewController: UIViewController , UITableViewDataSource , UITableViewDelegate {
+class MainConversationsViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, OneRosterDelegate {
+    
+    
    
     var chatList = NSArray()
-
-    
     @IBOutlet weak var mainConversationsTableView: UITableView!
     
     override func viewDidLoad() {
@@ -22,21 +22,23 @@ class MainConversationsViewController: UIViewController , UITableViewDataSource 
         mainConversationsTableView.delegate = self
         mainConversationsTableView.dataSource = self
         mainConversationsTableView.separatorStyle = .none
+        OneRoster.sharedInstance.delegate = self
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 1.0/255.0, green: 255.0/255.0, blue: 100.0/255.0, alpha: 1.0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        //navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        OneRoster.sharedInstance.delegate = nil
+        //navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     
-    // MARK:- Table view stubs
-    
+    // MARK:- Delegate Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -66,9 +68,45 @@ class MainConversationsViewController: UIViewController , UITableViewDataSource 
         return UIView()
     }
     
-    
-    
-    
-    @IBAction func actionClicked(_ sender: Any) {
+    func oneRosterContentChanged(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        mainConversationsTableView.reloadData()
     }
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "chat.to.add" {
+            if !OneChat.sharedInstance.isConnected() {
+                let alert = UIAlertController(title: "Attention", message: "You have to be connected to start a chat", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+                
+                return false
+            }
+        }
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chats.to.chat" {
+            if let controller = segue.destination as? ChatViewController {
+                if let cell: UITableViewCell = sender as? UITableViewCell {
+                    let user = OneChats.getChatsList().object(at: mainConversationsTableView.indexPath(for: cell)!.row) as! XMPPUserCoreDataStorageObject
+                    controller.recipient = user
+                }
+            }
+        }
+    }
+//    
+//    
+//    //MARK:- Actions    
+//    @IBAction func outClicked(_ sender: Any) {
+//        OneChat.sharedInstance.xmppStream?.disconnect()
+//        
+//        UserDefaults.standard.set(nil, forKey: kXMPP.myJID)
+//        UserDefaults.standard.set(nil, forKey: kXMPP.myPassword)
+//        let startUp = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AppStartUpPage")
+//        self.tabBarController?.present(startUp, animated: true, completion: nil)
+//        
+//    }
 }

@@ -49,6 +49,4 @@ UITableViewDelegate  {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-    
-    //tableView.register(UINib(nibName: "yourNib", bundle: nil), forCellReuseIdentifier: "SettingMenuCell")
 }
